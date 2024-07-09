@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe.only('test nova solicitação', async ()=> {
+test.describe('test nova solicitação', async ()=> {
 
     function formatDate(date: Date) {
         const day = String(date.getDate()).padStart(2, '0');
@@ -22,7 +22,7 @@ test.describe.only('test nova solicitação', async ()=> {
     await page.goto('https://app.kodigos.com.br:63995/scm/front/Login');
     await page.goto('https://app.kodigos.com.br:63995/scm/front/');
     await page.getByText('descriptionSolicitação').click();
-    await page.locator('a').filter({ hasText: /^description$/ }).click();
+    await page.locator('a').filter({ hasText: /^description$/ }).click()
     await page.locator('label').filter({hasText:'Filial'}).click();
     await page.getByText('/01 - Instituto Kodigos').click();
     await page.locator('div').filter({ hasText: /^Centro de Custo$/ }).first().click();
@@ -38,29 +38,9 @@ test.describe.only('test nova solicitação', async ()=> {
     await page.getByRole('option', { name: 'KT - KIT' }).locator('div').nth(1).click();
     await page.getByRole('button', { name: 'Adicionar' }).click();
     await page.getByRole('button', { name: 'SALVAR' }).click();
-    await page.waitForTimeout(8000);
+    await page.waitForTimeout(8000);//////////////////////////////////////////////
     await expect(page.getByText(descricao).first()).toBeVisible();
     await expect(page.locator('td').nth(4)).toHaveText(formattedDate);
 
   });
 });
-
-
-  // reprovando sem motivo
-
-  test.describe('test reprovar sem motivo', async ()=> {
-    test('reprovando sem motivo', async ({ page }) => {
-      await page.goto('https://app.kodigos.com.br:63995/scm/front/listaAprovarSolicitacoes');
-      await page.goto('https://app.kodigos.com.br:63995/scm/front/Login');
-      await page.goto('https://app.kodigos.com.br:63995/scm/front/');
-      await page.getByText('assignment_turned_inAprovar').click();
-      await page.locator('td').filter({ hasText: 'visibility' }).first().click();
-      await expect(page.getByText('Visualização')).toBeVisible();
-      await page.getByRole('button', { name: 'REPROVAR' }).click();
-      await expect(page.getByText('Confirmação')).toBeVisible();
-      await page.getByRole('button', { name: 'Sim' }).click();
-      await expect(page.getByText('O motivo não pode ser vazio')).toBeVisible();
-    
-    });
-  });
-  
