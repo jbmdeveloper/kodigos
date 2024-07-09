@@ -41,7 +41,6 @@ test.describe.only('test nova solicitação', async ()=> {
     await page.getByRole('option', { name: 'KT - KIT' }).locator('div').nth(1).click();
     await page.getByRole('button', { name: 'Adicionar' }).click();
     await page.getByRole('button', { name: 'SALVAR' }).click();
-    await page.waitForSelector('text=SALVAR', { state: 'hidden' });
     await page.waitForSelector('text=carregando', { state: 'hidden' });
     await page.waitForSelector('text=Solicitação enviada com sucesso!', { state: 'hidden' });
 
