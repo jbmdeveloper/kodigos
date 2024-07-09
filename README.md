@@ -1,6 +1,6 @@
 
 
-# Teste de Automação com Playwright
+# Teste de Automação Kodigos
 
 Este projeto contém testes de automação utilizando Playwright para interagir com um aplicativo web.
 
